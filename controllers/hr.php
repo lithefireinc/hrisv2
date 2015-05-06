@@ -202,6 +202,50 @@ class Hr extends MY_Controller{
         die(json_encode($data));
     }
 
+    function getDepartment(){
+        $this->load->model('commonmodel', '', TRUE);
+        $db = "fr";
+        $table = "filesubdepartment";
+        $fields = "*";
+
+        $start=$this->input->post('start');
+        $limit=$this->input->post('limit');
+
+
+        $sort = $this->input->post('sort');
+        $dir = $this->input->post('dir');
+        $query = $this->input->post('query');
+        $queryby = "";
+
+        if(empty($sort) && empty($dir)){
+            $sort = "dept_type";
+            $dir = "ASC";
+        }
+
+        if(!empty($query)){
+            $queryby = array("dept_type");
+
+        }
+        $records = array();
+        $records = $this->commonmodel->getAllRecords($db, $table, $sort, $dir, $queryby, $query,  $fields, $start, $limit);
+
+
+
+        $temp = array();
+        if($records){
+        foreach($records as $row):
+
+            $temp[] = $row;
+
+
+        endforeach;
+        }
+        $data['data'] = $temp;
+        $data['success'] = true;
+        $data['totalCount'] = $this->commonmodel->getNumRecords($db, $table, $queryby, $query);
+        die(json_encode($data));
+    }
+
     function getPosition(){
         $this->load->model('commonmodel', '', TRUE);
         $db = "fr";

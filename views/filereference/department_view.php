@@ -181,7 +181,7 @@
  		  	var _window;
 
  		    _window = new Ext.Window({
- 		        title: 'New Departments',
+ 		        title: 'New Department',
  		        width: 510,
  		        height:170,
  		        layout: 'fit',

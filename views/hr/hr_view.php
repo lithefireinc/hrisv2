@@ -2639,7 +2639,6 @@
       listeners: {
       select: function (combo, record, index){
       this.setRawValue(record.get('name'));
-                        //this.setValue(record.get('name'));
       Ext.getCmp(this.id).hiddenValue  = record.get('id');
       
       },
@@ -2653,16 +2652,15 @@
                             
       },
       keypress: {buffer: 100, fn: function() {
-      //Ext.get(this.hiddenName).dom.value  = '';
       if(!this.getRawValue()){
       this.doQuery('', true);
       }
       }}
       },
-      fieldLabel: 'Department*'
+      fieldLabel: 'Sub-department*'
                       
       }
-  }
+  },
         positionCombo: function(){
 
 		return {
