@@ -202,7 +202,7 @@ class Hr extends MY_Controller{
         die(json_encode($data));
     }
 
-    function getDepartment(){
+    function getSubDepartment(){
         $this->load->model('commonmodel', '', TRUE);
         $db = "fr";
         $table = "filesubdepartment";

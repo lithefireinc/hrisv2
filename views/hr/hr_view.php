@@ -2648,7 +2648,7 @@
       this.validate();
       },
       render: function() {
-      this.el.set({qtip: 'Type at least ' + this.minChars + ' characters to search for a department'});
+      this.el.set({qtip: 'Type at least ' + this.minChars + ' characters to search for a sub-department'});
                             
       },
       keypress: {buffer: 100, fn: function() {
