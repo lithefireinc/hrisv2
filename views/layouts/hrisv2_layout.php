@@ -4,7 +4,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Welcome to HRISV2 </title>
-		<link href= "/css/all.css" rel="stylesheet" type="text/css" />
+		<?php echo css_asset("all.css"); ?>
 <!--[if lt IE 8]>
 <style type="text/css">
     #xouter{display:block}
@@ -25,17 +25,17 @@
 
 <!-- ** Javascript ** -->
 <!-- ExtJS library: base/adapter -->
-<script type="text/javascript" src="/js/all.js"></script>
+<?php echo js_asset("all.js"); ?>
 
 <div id="maincontent">
   <div id="left">
-     <div id="object2"><img src="/images/hrislogo.png" /></div>
+     <div id="object2"><?php echo image_asset("hrislogo.png"); ?></div>
      
   </div>
 
 
   <div id="right">
-    <div id="object1"><img src="/images/hrisrightheader.png" align="right" /></div>
+    <div id="object1"><?php echo image_asset("hrisrightheader.png", '', array("align"=>"right")); ?></div>
   </div>
     
 </div>
@@ -70,12 +70,9 @@ ExtCommon.util.validations();
     }
 }, '-',
 		<?php
-		//include("/home/lithefzj/public_html/sms/functions/connect.php");
-		//@session_start();
 		$dbLink = new mysqli("localhost", $this->db->username, $this->db->password, $this->db->database);
 		$id = $userId;
 		$username = $userName;
-		#echo $id;
 
 			$sql = "SELECT DISTINCT a.description AS btn, a.icon, b.description AS mnu, b.link, b.group
 FROM module_category a LEFT JOIN module b ON a.id = b.category_id
@@ -83,8 +80,6 @@ LEFT JOIN module_group_access c ON c.module_id = b.id
 LEFT JOIN module_group d ON d.id = c.group_id
 LEFT JOIN module_group_users e ON d.id = e.group_id
 WHERE b.is_public = 1 OR e.username = '$username' ORDER BY a.order, b.group, b.order, b.description";
-			/*$sql = mysql_query("SELECT a.description AS btn, a.icon, b.description AS mnu, b.link, b.group FROM tbl_button a JOIN tbl_menu b ON a.button_id = b.button_id
-WHERE a.access_level IN (0, $id) ORDER BY b.order");*/
 
 			$result = $dbLink->query($sql);
 
@@ -93,7 +88,6 @@ WHERE a.access_level IN (0, $id) ORDER BY b.order");*/
 			$btnarray[] = $rows;
 
 			}
-		//print_r($btnarray);
 
   foreach($btnarray as $key => $value){
 
@@ -102,12 +96,10 @@ WHERE a.access_level IN (0, $id) ORDER BY b.order");*/
   $lastmenu[$value['btn']] = $value['mnu'];
   $lastbutton = $value['btn'];
   }
-  #print_r($lastmenu);
 
   $count = 0;
 
   foreach($buttons as $key => $value){
-  //print_r($val);
   echo "{
 					xtype: 'tbbutton',
 					icon: '".$icon[$key]."',
