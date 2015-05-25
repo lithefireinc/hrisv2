@@ -72,7 +72,7 @@ ExtCommon.util.validations();
 		<?php
 		//include("/home/lithefzj/public_html/sms/functions/connect.php");
 		//@session_start();
-		$dbLink = new mysqli("localhost", "pmmspon_darryl", "LeyyeL03@!", "pmmspon_hrisv2");
+		$dbLink = new mysqli("localhost", $this->db->username, $this->db->password, $this->db->database);
 		$id = $userId;
 		$username = $userName;
 		#echo $id;
