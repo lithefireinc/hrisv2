@@ -6,7 +6,7 @@
 
         <!-- ** CSS ** -->
         <!-- base library -->
-        <link rel="stylesheet" type="text/css" href="/css/all.css" />
+        <?php echo css_asset("all.css"); ?>
 	<!--<link href="/hrisv2/css/ui_login.css" rel="stylesheet" type="text/css" />-->
  <style type="text/css">
 * {margin:0;padding:0}
@@ -62,7 +62,7 @@ overflow:hidden;
 <body id="bod">
     <!-- ** Javascript ** -->
     <!-- ExtJS library: base/adapter -->
-    <script type="text/javascript" src="/js/all.js"></script>
+    <?php echo js_asset("all.js"); ?>
 <script type="text/javascript">
         // Path to the blank image should point to a valid location on your server
         Ext.BLANK_IMAGE_URL = '/images/default/s.gif';
