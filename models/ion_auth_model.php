@@ -819,11 +819,12 @@ class Ion_auth_model extends CI_Model
 		                  ->limit(1)
 		                  ->get($this->tables['users']);
 		//die($this->db->last_query());
+        //die(var_dump(array($query->row())));
 		$user = $query->row();
 		//die(print_r($user));
 		if ($query->num_rows() == 1)
 		{
-	
+	    //die(var_dump($query));
 		$pass = $password;
 
 			$pass = $password;

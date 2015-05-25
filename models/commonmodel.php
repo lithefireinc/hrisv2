@@ -203,11 +203,14 @@ class Commonmodel extends CI_Model
     }
 
     function getRecordWhere($db, $table, $field, $param, $fields){
+
         $this->database = $this->load->database($db, TRUE);
         $this->database->where($field,$param);
         $this->database->select($fields);
 
         $query=$this->database->get($table);
+
+        //die(var_dump($query->result_array()));
 
         // return result set as an associative array
 

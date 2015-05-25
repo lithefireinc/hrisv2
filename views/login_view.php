@@ -6,7 +6,7 @@
 
         <!-- ** CSS ** -->
         <!-- base library -->
-        <link rel="stylesheet" type="text/css" href="/js/ext34/resources/css/ext-all.css" />
+        <link rel="stylesheet" type="text/css" href="/css/all.css" />
 	<!--<link href="/hrisv2/css/ui_login.css" rel="stylesheet" type="text/css" />-->
  <style type="text/css">
 * {margin:0;padding:0}
@@ -60,17 +60,12 @@ overflow:hidden;
 <![endif]-->
 
 <body id="bod">
-<!-- ** Javascript ** -->
-        <!-- ExtJS library: base/adapter -->
-        <script type="text/javascript" src="/js/ext34/adapter/ext/ext-base.js"></script>
-        <script type="text/javascript" src="/js/commonjs/ExtCommon.js"></script>
-        <!-- ExtJS library: all widgets -->
-        <script type="text/javascript" src="/js/ext34/ext-all-debug.js"></script>
-
-
+    <!-- ** Javascript ** -->
+    <!-- ExtJS library: base/adapter -->
+    <script type="text/javascript" src="/js/all.js"></script>
 <script type="text/javascript">
         // Path to the blank image should point to a valid location on your server
-        Ext.BLANK_IMAGE_URL = '/js/ext34/resources/images/default/s.gif';
+        Ext.BLANK_IMAGE_URL = '/images/default/s.gif';
 
         Ext.onReady(function(){
 
