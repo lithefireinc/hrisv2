@@ -151,7 +151,7 @@ overflow:hidden;
 
 			pwd.render('form1');
 
-        }); //end onReady
+        });
         </script>
 <div id="wrapper">
 	<div id="outer">
