@@ -8,8 +8,13 @@
 | whenever you intend to do a schema migration.
 |
 */
-$config['migration_enabled'] = TRUE;
-
+switch(ENVIRONMENT):
+    case 'development': $config['migration_enabled'] = TRUE;
+        break;
+    case 'production': $config['migration_enabled'] = FALSE;
+        break;
+    default: $config['migration_enabled'] = FALSE;
+endswitch;
 
 /*
 |--------------------------------------------------------------------------
