@@ -25,6 +25,9 @@
 
 <!-- ** Javascript ** -->
 <!-- ExtJS library: base/adapter -->
+<script type="text/javascript">
+    var baseurl = "<?php echo base_url(); ?>"
+</script>
 <?php echo js_asset("all.js"); ?>
 
 <div id="maincontent">
@@ -301,6 +304,7 @@ WHERE b.is_public = 1 OR e.username = '$username' ORDER BY a.order, b.group, b.o
 		}).render();
 
     </script>
+
     <?php echo $content_for_layout?>
 <style type="text/css">
 

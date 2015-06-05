@@ -741,7 +741,7 @@
 	 	 			         {
 	 	 			          columnWidth:.515,
 	 	 			          layout: 'form',
-	 	 			          items: [employee.app.departmentCombo(), employee.app.employeeCategoryCombo(), {
+	 	 			          items: [{xtype: 'departmentcombo', id: 'department_id', anchor: '91%'}, employee.app.employeeCategoryCombo(), {
                                                                                     xtype:'textfield',
 	 	  	 	 			 		            fieldLabel: 'Salary',
 	 	  	 	 			 		            name: 'salary',
@@ -1062,8 +1062,6 @@
                                                         params:{id: id},
 							success: function(f, a){
                                                             Ext.getCmp('username').setReadOnly(true);
-                                                           // Ext.getCmp('password').setReadOnly(true);
-                                                            //Ext.getCmp('password').setValue("");
                                                             Ext.getCmp('educationTab').enable();
                                                             Ext.getCmp('employmentTab').enable();
                                                             Ext.getCmp('trainingTab').enable();
@@ -1073,7 +1071,6 @@
                                                             employee.app.employmentGrid.getStore().load();
                                                             employee.app.trainingGrid.getStore().setBaseParam('employee_id', id);
                                                             employee.app.trainingGrid.getStore().load();
-                                                            //alert(a.result.data.employee_status_description);
                                                             
                                                             _window.show();
                                                             Ext.get("CITIIDNO").dom.value = a.result.data.CITIIDNO;
@@ -1084,63 +1081,6 @@
 							}
 
 						});
-
-
- 		  	/*Ext.Ajax.request({
-				url: "<?php //echo site_url("main/loademployee"); ?>",
-				params:{ id: id},
-				method: "POST",
-				timeout:300000000,
-                success: function(responseObj){
-    		    	var response = Ext.decode(responseObj.responseText);
-			if(response.success == true)
-			{
-			Ext.getCmp("description").setValue(response.description);
-			_window.show();
-				return;
-
-			}
-			else if(response.success == false)
-			{
-
-
-				return;
-			}
-				},
-                failure: function(f,a){
-					Ext.Msg.show({
-						title: 'Error Alert',
-						msg: "There was an error encountered. Please contact your administrator",
-						icon: Ext.Msg.ERROR,
-						buttons: Ext.Msg.OK
-					});
-                },
-                waitMsg: 'Please Wait...'
-			});*/
-
-
- 		  /*	employee.app.Form.getForm().load({
- 				url: "functions/loademployee.php",
- 				method: 'POST',
- 				params: {id: id},
- 				timeout: 300000,
- 				waitMsg:'Loading...',
- 				success: function(form, action){
- 			 		//Ext.get('employee').dom.value  = action.result.data.employee;
- 			 		//Ext.get('toId').dom.value  = action.result.data.ToId;
- 			 		Ext.getCmp('employee').setValue(action.result.data.employee);
- 			 		//Ext.getCmp('receiverId').setRawValue(action.result.data.receiver_name);
- 				},
- 				failure: function(form, action) {
-         					Ext.Msg.show({
- 									title: 'Error Alert',
- 									msg: "A connection to the server could not be established",
- 									icon: Ext.Msg.ERROR,
- 									buttons: Ext.Msg.OK,
- 									fn: function(){ _window.close(); }
- 								});
-     			}
- 			});*/
  			}else return;
  		},
 		Delete: function(){
@@ -2611,7 +2551,7 @@
 			root: 'data',
 			totalProperty: 'totalCount',
 			fields:[{name: 'id', mapping: 'dept_idno'}, {name: 'name', type:'string', mapping: 'dept_type'}],
-			url: "<?php echo site_url("hr/getDepartment"); ?>",
+			url: "<?php echo site_url("filereference/department/lists"); ?>",
 			baseParams: {start: 0, limit: 10}
 													
 			}),

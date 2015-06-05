@@ -63,6 +63,10 @@ class Lithefire_m extends Eloquent
         return $errors;
     }
 
+    public function addMsg(){
+        return $this->add_message;
+    }
+
     public function updatedMsg(){
         return $this->updated_message;
     }
