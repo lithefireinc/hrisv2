@@ -1,9 +1,7 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+//use Employee_m;
+
 class Hr extends MY_Controller{
 
     function Hr(){
@@ -536,41 +534,44 @@ class Hr extends MY_Controller{
     }
 
     function updateEmployee(){
-        $this->load->model('commonmodel', '', TRUE);
-        $db = "default";
-        $table = "tbl_employee_info";
-        $param = "id";
-       // $fields = $this->input->post();
-
-        $id=$this->input->post('id');
-
-        $input = array();
-        foreach($this->input->post() as $key => $val){
-            if(!empty($val)){
-                $input[$key] = $val;
-                if($key == 'password')
-                    $input[$key] = md5($val);
-            }
-        }
-
-        //$firstname = $input['firstname'];
-        //$lastname = $input['lastname'];
-
-        //$input['username'] = strtolower($firstname.".".$lastname);
-        //$input['password'] = md5("12345678");
-       // $input['department'] = $this->commonmodel->getFieldWhere($db, "filedepartment", "description", $input['department'], "id");
-      //  $input['position'] = $this->commonmodel->getFieldWhere($db, "fileposition", "description", $input['position'], "id");
-       // $input['employee_category'] = $this->commonmodel->getFieldWhere($db, "fileemployeecategory", "description", $input['employee_category'], "id");
-       // $input['employee_status'] = $this->commonmodel->getFieldWhere($db, "fileemployeestatus", "description", $input['employee_status'], "id");
-
-
-
-
-        $records = array();
-        $data = $this->commonmodel->updateRecord($db, $table, $input, $param, $id);
-
-
-        die(json_encode($data));
+//        $this->load->model('commonmodel', '', TRUE);
+//        $db = "default";
+//        $table = "tbl_employee_info";
+//        $param = "id";
+//       // $fields = $this->input->post();
+//
+//        $id=$this->input->post('id');
+//
+//        $input = array();
+//        foreach($this->input->post() as $key => $val){
+//            if(!empty($val)){
+//                $input[$key] = $val;
+//                if($key == 'password')
+//                    $input[$key] = md5($val);
+//            }
+//        }
+//
+//        //$firstname = $input['firstname'];
+//        //$lastname = $input['lastname'];
+//
+//        //$input['username'] = strtolower($firstname.".".$lastname);
+//        //$input['password'] = md5("12345678");
+//       // $input['department'] = $this->commonmodel->getFieldWhere($db, "filedepartment", "description", $input['department'], "id");
+//      //  $input['position'] = $this->commonmodel->getFieldWhere($db, "fileposition", "description", $input['position'], "id");
+//       // $input['employee_category'] = $this->commonmodel->getFieldWhere($db, "fileemployeecategory", "description", $input['employee_category'], "id");
+//       // $input['employee_status'] = $this->commonmodel->getFieldWhere($db, "fileemployeestatus", "description", $input['employee_status'], "id");
+//
+//
+//
+//
+//        $records = array();
+//        $data = $this->commonmodel->updateRecord($db, $table, $input, $param, $id);
+        $input = $this->input->post();
+        $employee = Employee_m::findOrFail($input['id']);
+        unset($input['id']);
+        //die(var_dump([$employee,$this->input->post()]));
+        $employee->update($input);
+        die(json_encode(["data"=>$employee->updatedMsg(), "success"=>true]));
     }
 
     function deleteEmployee(){

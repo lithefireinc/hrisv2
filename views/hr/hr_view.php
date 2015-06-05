@@ -757,6 +757,20 @@
 	 	  	 	 			 anchor:'91%',  // anchor width by percentage
 	 	  	 	 			 id: 'tin'
 	 	  	 	 			 		        },
+                                  {
+                                      xtype:'textfield',
+                                      fieldLabel: 'Pagibig Tracking Number',
+                                      name: 'pagibig_tracking_number',
+                                      //allowBlank:false,
+                                      anchor:'91%'
+                                  },
+                                  {
+                                      xtype:'textfield',
+                                      fieldLabel: 'Pagibig MID Number',
+                                      name: 'pagibig_mid_number',
+                                      //allowBlank:false,
+                                      anchor:'91%'
+                                  },
                                                   {xtype: 'datefield',
 		 	 			        fieldLabel: 'Date Resigned*',
 		 	 			        name: 'date_resigned',
@@ -767,14 +781,15 @@
 		 	 			        anchor: '91%'
 
 	 	 			      },
-	 	 			      {
-                                                     xtype:'textfield',
-	 	  	 	 			 fieldLabel: 'Biometrics Id',
-	 	  	 	 			name: 'biometrics_id',
-	 	  	 	 			//allowBlank:false,
-	 	  	 	 			 anchor:'91%',  // anchor width by percentage
-	 	  	 	 			 id: 'biometrics_id'
-	 	  	 	 			 		        }
+                                  {
+                                      xtype:'textfield',
+                                      fieldLabel: 'Reason',
+                                      name: 'reason',
+                                      //allowBlank:false,
+                                      anchor:'91%',  // anchor width by percentage
+                                      id: 'reason'
+                                  }
+
 
                                                   ]
 
@@ -803,14 +818,35 @@
 	 	  	 	 			 anchor:'92%',  // anchor width by percentage
 	 	  	 	 			 id: 'sss'
 	 	  	 	 			 		        },
-                                                  {
-                                                     xtype:'textfield',
-	 	  	 	 			 fieldLabel: 'Reason',
-	 	  	 	 			name: 'reason',
-	 	  	 	 			//allowBlank:false,
-	 	  	 	 			 anchor:'92%',  // anchor width by percentage
-	 	  	 	 			 id: 'reason'
-	 	  	 	 			 		        }
+                                  {
+                                      xtype:'textfield',
+                                      fieldLabel: 'Pagibig RTN',
+                                      name: 'pagibig_rtn',
+                                      //allowBlank:false,
+                                      anchor:'92%'
+                                  },
+                                  {
+                                      xtype:'textfield',
+                                      fieldLabel: 'Philhealth Number',
+                                      name: 'philhealth_number',
+                                      //allowBlank:false,
+                                      anchor:'92%'
+                                  },
+                                  {
+                                      xtype:'textfield',
+                                      fieldLabel: 'Tax Exemption',
+                                      name: 'tax_exemption',
+                                      //allowBlank:false,
+                                      anchor:'92%'
+                                  },
+                                  {
+                                      xtype:'textfield',
+                                      fieldLabel: 'Biometrics Id',
+                                      name: 'biometrics_id',
+                                      //allowBlank:false,
+                                      anchor:'92%',  // anchor width by percentage
+                                      id: 'biometrics_id'
+                                  }
                                                   ]
 
                                                   }
