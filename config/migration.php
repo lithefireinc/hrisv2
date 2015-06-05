@@ -26,7 +26,7 @@ endswitch;
 | be upgraded / downgraded to.
 |
 */
-$config['migration_version'] = 1;
+$config['migration_version'] = 2;
 
 
 /*
