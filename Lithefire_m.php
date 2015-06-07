@@ -23,12 +23,8 @@ class Lithefire_m extends Eloquent
 
     public function validate($data, $id = null)
     {
-        $ci = &get_instance();
-        $factory = new Validator(new Translator('en'));
-        $v = $factory->make($data, $this->getValidationRules($id), $this->messages);
-        $manager = $ci->db->capsule->getDatabaseManager();
-        $manager->setDefaultConnection($this->connection);
-        $v->setPresenceVerifier(new \Illuminate\Validation\DatabasePresenceVerifier($manager));
+        $v = $this->initializeValidator($data, $id);
+
         if($v->fails())
         {
             $this->errors = $v->errors();
@@ -88,5 +84,16 @@ class Lithefire_m extends Eloquent
         $this->add_message = $this->title." successfully added";
         $this->updated_message = $this->title." successfully updated";
         $this->deleted_message = $this->title." successfully deleted";
+    }
+
+    protected function initializeValidator($data, $id = null){
+        $ci = &get_instance();
+        $factory = new Validator(new Translator('en'));
+        $v = $factory->make($data, $this->getValidationRules($id), $this->messages);
+        $manager = $ci->db->capsule->getDatabaseManager();
+        $manager->setDefaultConnection($this->connection);
+        $v->setPresenceVerifier(new \Illuminate\Validation\DatabasePresenceVerifier($manager));
+
+        return $v;
     }
 }

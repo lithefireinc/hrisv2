@@ -741,7 +741,36 @@
 	 	 			         {
 	 	 			          columnWidth:.515,
 	 	 			          layout: 'form',
-	 	 			          items: [{xtype: 'departmentcombo', id: 'department', anchor: '91%'}, employee.app.employeeCategoryCombo(), {
+	 	 			          items: [{xtype: 'departmentcombo', id: 'department_id',
+                                  hiddenName: 'department',
+                                  hiddenId: 'department',
+                                  name: 'department_id',
+                                  anchor: '91%', itemId: 'department_combo',
+                              listeners: {
+                                  select: function (combo, record, index){
+                                      combo.setRawValue(record.get('name'));
+                                      combo.hiddenValue = record.get('id');
+                                      Ext.getCmp('subdepartment').clearValue();
+                                  }
+                              }},
+                                  {xtype: 'subdepartmentcombo', id: 'subdepartment', name: 'subdepartment', hiddenId: 'subdeartment_id', hiddenName: 'subdepartment_id', anchor: '91%',
+                                      listeners: {
+                                          beforequery: function (query) {
+                                              delete query.combo.lastQuery;
+                                              var val = Ext.getCmp('department_id').getValue();
+                                              if (val == "")
+                                                  return false;
+
+                                               this.store.baseParams = {department_id: val};
+
+                                               var o = {start: 0, limit:10};
+                                               this.store.baseParams = this.store.baseParams || {};
+                                               this.store.baseParams[this.paramName] = '';
+                                               this.store.load({params:o, timeout: 300000});
+                                          }
+                                      }
+                                      },
+                                  employee.app.employeeCategoryCombo(), {
                                                                                     xtype:'textfield',
 	 	  	 	 			 		            fieldLabel: 'Salary',
 	 	  	 	 			 		            name: 'salary',
@@ -1077,7 +1106,8 @@
                                                             Ext.getCmp("employee_status_id").setRawValue(a.result.data.employee_status_description);
                                                             Ext.getCmp("employee_category_id").setRawValue(a.result.data.employee_category_description);
                                                             Ext.getCmp("position_id").setRawValue(a.result.data.position_description);
-                                                            Ext.getCmp("department").setRawValue(a.result.data.department_description);
+                                                            Ext.getCmp("department_id").setRawValue(a.result.data.department_description);
+                                                            Ext.getCmp("subdepartment").setRawValue(a.result.data.subdepartment);
 							}
 
 						});
@@ -2524,119 +2554,6 @@
 
                 },
                 //comboboxes start
-
-                departmentCombo: function(){
-											
-		return {
-			xtype:'combo',
-			id:'department_id',
-			hiddenName: 'department',
-                        hiddenId: 'department',
-			name: 'department_name',
-			valueField: 'id',
-			displayField: 'name',
-			//width: 100,
-			anchor: '91%',
-			triggerAction: 'all',
-			minChars: 2,
-			forceSelection: true,
-			enableKeyEvents: true,
-			pageSize: 10,
-			resizable: true,
-			readOnly: false,
-			minListWidth: 300,
-			allowBlank: false,		
-			store: new Ext.data.JsonStore({
-			id: 'idsocombo',
-			root: 'data',
-			totalProperty: 'totalCount',
-			fields:[{name: 'id', mapping: 'dept_idno'}, {name: 'name', type:'string', mapping: 'dept_type'}],
-			url: "<?php echo site_url("filereference/department/lists"); ?>",
-			baseParams: {start: 0, limit: 10}
-													
-			}),
-			listeners: {
-			select: function (combo, record, index){
-			this.setRawValue(record.get('name'));
-                        //this.setValue(record.get('name'));
-			Ext.getCmp(this.id).hiddenValue  = record.get('id');
-			
-			},
-			blur: function(){
-			var val = this.getRawValue();
-			this.setRawValue.defer(1, this, [val]);
-			this.validate();
-			},
-			render: function() {
-			this.el.set({qtip: 'Type at least ' + this.minChars + ' characters to search for a department'});
-														
-			},
-			keypress: {buffer: 100, fn: function() {
-			Ext.get(this.hiddenName).dom.value  = '';
-			if(!this.getRawValue()){
-			this.doQuery('', true);
-			}
-			}}
-			},
-			fieldLabel: 'Department*'
-											
-			}
-	},
-  subDepartmentCombo: function(){
-                      
-    return {
-      xtype:'combo',
-      id:'subdepartment_id',
-      hiddenName: 'subdepartment',
-      hiddenId: 'subdepartment',
-      name: 'subdepartment_name',
-      valueField: 'id',
-      displayField: 'name',
-      //width: 100,
-      anchor: '91%',
-      triggerAction: 'all',
-      minChars: 2,
-      forceSelection: true,
-      enableKeyEvents: true,
-      pageSize: 10,
-      resizable: true,
-      readOnly: false,
-      minListWidth: 300,
-      allowBlank: false,    
-      store: new Ext.data.JsonStore({
-      id: 'idsocombo',
-      root: 'data',
-      totalProperty: 'totalCount',
-      fields:[{name: 'id', mapping: 'dept_idno'}, {name: 'name', type:'string', mapping: 'dept_type'}],
-      url: "<?php echo site_url("hr/getSubDepartment"); ?>",
-      baseParams: {start: 0, limit: 10}
-                          
-      }),
-      listeners: {
-      select: function (combo, record, index){
-      this.setRawValue(record.get('name'));
-      Ext.getCmp(this.id).hiddenValue  = record.get('id');
-      
-      },
-      blur: function(){
-      var val = this.getRawValue();
-      this.setRawValue.defer(1, this, [val]);
-      this.validate();
-      },
-      render: function() {
-      this.el.set({qtip: 'Type at least ' + this.minChars + ' characters to search for a sub-department'});
-                            
-      },
-      keypress: {buffer: 100, fn: function() {
-      if(!this.getRawValue()){
-      this.doQuery('', true);
-      }
-      }}
-      },
-      fieldLabel: 'Sub-department*'
-                      
-      }
-  },
         positionCombo: function(){
 
 		return {
@@ -2699,7 +2616,7 @@
 			xtype:'combo',
 			id:'employee_category_id',
 			hiddenName: 'employee_category',
-                        hiddenId: 'employee_category',
+            hiddenId: 'employee_category',
 			name: 'employee_category_name',
 			valueField: 'id',
 			displayField: 'name',

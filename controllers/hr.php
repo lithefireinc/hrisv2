@@ -518,6 +518,7 @@ class Hr extends MY_Controller{
 
         foreach($records as $row):
             $row['department_description'] = $this->commonmodel->getFieldWhere("fr", "filedept", "dept_idno", $row['department'], "dept_type");
+            $row['subdepartment'] = $this->commonmodel->getFieldWhere("fr", "filesubdept", "id", $row['subdepartment_id'], "description");
             $row['position_description'] = $this->commonmodel->getFieldWhere("fr", "fileposi", "id", $row['position'], "description");
             $row['employee_category_description'] = $this->commonmodel->getFieldWhere("fr", "fileemca", "id", $row['employee_category'], "description");
             $row['employee_status_description'] = $this->commonmodel->getFieldWhere("fr", "fileemst", "id", $row['employee_status'], "description");
