@@ -741,7 +741,7 @@
 	 	 			         {
 	 	 			          columnWidth:.515,
 	 	 			          layout: 'form',
-	 	 			          items: [{xtype: 'departmentcombo', id: 'department_id', anchor: '91%'}, employee.app.employeeCategoryCombo(), {
+	 	 			          items: [{xtype: 'departmentcombo', id: 'department', anchor: '91%'}, employee.app.employeeCategoryCombo(), {
                                                                                     xtype:'textfield',
 	 	  	 	 			 		            fieldLabel: 'Salary',
 	 	  	 	 			 		            name: 'salary',
@@ -1077,7 +1077,7 @@
                                                             Ext.getCmp("employee_status_id").setRawValue(a.result.data.employee_status_description);
                                                             Ext.getCmp("employee_category_id").setRawValue(a.result.data.employee_category_description);
                                                             Ext.getCmp("position_id").setRawValue(a.result.data.position_description);
-                                                            Ext.getCmp("department_id").setRawValue(a.result.data.department_description);
+                                                            Ext.getCmp("department").setRawValue(a.result.data.department_description);
 							}
 
 						});

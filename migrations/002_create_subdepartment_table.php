@@ -7,7 +7,11 @@ class Migration_create_subdepartment_table extends CI_Migration
     {
         $this->db->query('use engine');
         $this->dbforge->add_field(array(
-            'id',
+            'id' => array(
+                'type' => 'INT',
+                'constraint' => '11',
+                'auto_increment' => TRUE
+            ),
             'description' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100',
