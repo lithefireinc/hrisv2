@@ -96,4 +96,9 @@ class Lithefire_m extends Eloquent
 
         return $v;
     }
+
+    public function setRules($rules)
+    {
+        $this->rules = $rules;
+    }
 }
