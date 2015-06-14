@@ -28,7 +28,10 @@
 <script type="text/javascript">
     var baseurl = "<?php echo base_url(); ?>"
 </script>
+<?php echo js_asset("vendor.js"); ?>
 <?php echo js_asset("all.js"); ?>
+<?php echo js_asset("components.js"); ?>
+
 
 <div id="maincontent">
   <div id="left">

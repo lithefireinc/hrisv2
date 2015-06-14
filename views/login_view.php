@@ -62,7 +62,9 @@ overflow:hidden;
 <body id="bod">
     <!-- ** Javascript ** -->
     <!-- ExtJS library: base/adapter -->
+    <?php echo js_asset("vendor.js"); ?>
     <?php echo js_asset("all.js"); ?>
+
 <script type="text/javascript">
         // Path to the blank image should point to a valid location on your server
         Ext.BLANK_IMAGE_URL = '/images/default/s.gif';
